@@ -31,6 +31,6 @@ Update LOGIN_NAME, PASSWORD, and BASE_URL.
 Set IDs: Ensure CP_ID and SITE_NAME match your specific OpenSpecimen instance configuration.
 
 Run:
-'''
+```
 python openspecimen_workflow.py
-'''
+```
