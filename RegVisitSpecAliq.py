@@ -84,10 +84,10 @@ specimen = post(session,"/specimens", {
     
     "collectionEvent": {
         "user":{
-            "firstName":"Sumit",
-            "lastName":"Gatade",
+            "firstName":"staff first name",
+            "lastName":"staff last name",
             "loginName":LOGIN_NAME,
-            "emailAddress":"sumitgatade05@gmail.com",
+            "emailAddress":"staff email",
             "domain":DOMAIN
         },
         "time":now_utc,
@@ -97,10 +97,10 @@ specimen = post(session,"/specimens", {
     
     "receivedEvent":{
         "user":{
-            "firstName":"Sumit",
-            "lastName":"Gatade",
+            "firstName":"staff first name",
+            "lastName":"staff last name",
             "loginName":LOGIN_NAME,
-            "emailAddress":"sumitgatade05@gmail.com",
+            "emailAddress":"staff email",
             "domain":DOMAIN
         },
         "time":now_utc,
