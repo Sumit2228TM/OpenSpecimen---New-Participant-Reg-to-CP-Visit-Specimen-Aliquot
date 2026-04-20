@@ -3,8 +3,8 @@ import json
 from datetime import datetime, timezone
  
 BASE_URL   = "https://test.openspecimen.org/rest/ng"
-LOGIN_NAME = "sumitgatade05@gmail.com"
-PASSWORD   = "Sumit@123"
+LOGIN_NAME = "Login Name"
+PASSWORD   = "Password"
 DOMAIN     = "openspecimen"
 CP_ID      = 62
 SITE_NAME  = "Monash Health Center"   
@@ -19,7 +19,7 @@ def post(session, path, payload):  #wrapper banaya hai to make repetitive things
     return data
  
  
-session = requests.Session()   # creates a session object - better than individual requests qki it will remember headers across calls
+session = requests.Session()   # creates a session object - better than individual requests qki it will remember headers & cookies (mem id helps to rem across mul req) across calls
 session.headers.update({"Content-Type": "application/json"})
  
 auth = session.post(f"{BASE_URL}/sessions", json={
@@ -35,11 +35,11 @@ print(" ")
 
 cpr = post(session, "/collection-protocol-registrations/", {
     "participant" :{
-        "firstName" : "Deep",
-        "lastName":"Vanjari",
-        "emailAddress":"deepv05@gmail.com",
+        "firstName" : "Pratik",
+        "lastName":"Patil",
+        "emailAddress":"pratik05@gmail.com",
         "gender": "Male",
-        "birthDate":"2005-07-09",
+        "birthDate":"2005-03-14",
         "vitalStatus":"Alive",
         "races":["Asian"]
     },
@@ -69,8 +69,6 @@ print(f" Visit Created for Newly Registered Participant - visitId: {visit_id}")
 print(" ")
 
 now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-user_ref = {"loginName": LOGIN_NAME,"domainName":DOMAIN}
-
 
 specimen = post(session,"/specimens", {
     "lineage":"New",
@@ -85,14 +83,26 @@ specimen = post(session,"/specimens", {
     "storageLocation": {},
     
     "collectionEvent": {
-        "user":user_ref,
+        "user":{
+            "firstName":"Sumit",
+            "lastName":"Gatade",
+            "loginName":LOGIN_NAME,
+            "emailAddress":"sumitgatade05@gmail.com",
+            "domain":DOMAIN
+        },
         "time":now_utc,
         "container":"Not Specified",
         "procedure":"Not Specified"
     },
     
     "receivedEvent":{
-        "user":user_ref,
+        "user":{
+            "firstName":"Sumit",
+            "lastName":"Gatade",
+            "loginName":LOGIN_NAME,
+            "emailAddress":"sumitgatade05@gmail.com",
+            "domain":DOMAIN
+        },
         "time":now_utc,
         "receivedQuality":"Acceptable"
     }
@@ -113,16 +123,13 @@ for i in range(1,6):
         "specimenClass":"Fluid",
         "createdOn":now_utc,
         "type":"Bone Marrow Plasma",
-        "label":f"Specimen_label{i}",
+        "label":f"",
         "storageLocation":{}
     })
     
-aliquots = post(session,"specimens/collect",aliquots_list)
+aliquots = post(session,"/specimens/collect",aliquots_list)
 print(f" {len(aliquots_list)} Aliquots Created From Primary Specimen ")
 print(" ")
 
 for i in aliquots:
     print(f" id - {i["id"]} Label - {i["label"]} Qty - {i["initialQty"]}ml")
-
-
-
