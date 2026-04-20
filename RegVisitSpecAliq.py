@@ -19,7 +19,7 @@ def post(session, path, payload):  #wrapper banaya hai to make repetitive things
     return data
  
  
-session = requests.Session()   # creates a session object - better than individual requests qki it will remember headers & cookies (mem id helps to rem across mul req) across calls
+session = requests.Session()   # creates a session object - better than individual requests qki it will remember headers across calls
 session.headers.update({"Content-Type": "application/json"})
  
 auth = session.post(f"{BASE_URL}/sessions", json={
