@@ -30,9 +30,8 @@ The implementation relies on several key REST API interactions. It first perform
 The core specimen logic uses the Create Specimen endpoint for the primary sample and the Specimen Collect endpoint for the aliquots. The script ensures high data quality by using ISO 8601 UTC timestamps for the createdOn fields and carefully managing the parentId to maintain the biological hierarchy.
 
 Field Highlights
-lineage: Tracks the relationship between the primary sample (New) and its children (Aliquot).
 
-createdOn: Utilizes ISO 8601 UTC timestamps for precise tracking.
+lineage: Tracks the relationship between the primary sample (New) and its children (Aliquot).
 
 parentId: Explicitly links the 5 aliquots back to the primary specimen ID.
 
